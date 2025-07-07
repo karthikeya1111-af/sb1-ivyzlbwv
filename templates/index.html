@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Name Generator - AI-Powered Name Creation</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-lightbulb"></i>
+                <h1>BizNameGen</h1>
+            </div>
+            <p class="subtitle">AI-Powered Business Name Generator</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Input Section -->
+            <section class="input-section">
+                <div class="input-container">
+                    <label for="business-input" class="input-label">
+                        <i class="fas fa-edit"></i>
+                        Describe your business idea
+                    </label>
+                    <textarea 
+                        id="business-input" 
+                        class="business-input" 
+                        placeholder="e.g., eco-friendly skincare products, AI startup for healthcare, pet grooming services..."
+                        rows="4"
+                    ></textarea>
+                </div>
+
+                <div class="options-grid">
+                    <div class="option-group">
+                        <label for="tone-select" class="option-label">
+                            <i class="fas fa-palette"></i>
+                            Business Tone
+                        </label>
+                        <select id="tone-select" class="tone-select">
+                            <option value="professional">Professional</option>
+                            <option value="playful">Playful</option>
+                            <option value="elegant">Elegant</option>
+                            <option value="minimal">Minimal</option>
+                        </select>
+                    </div>
+
+                    <div class="option-group">
+                        <label for="count-select" class="option-label">
+                            <i class="fas fa-list-ol"></i>
+                            Number of Names
+                        </label>
+                        <select id="count-select" class="count-select">
+                            <option value="10">10 Names</option>
+                            <option value="15" selected>15 Names</option>
+                            <option value="20">20 Names</option>
+                            <option value="30">30 Names</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="ai-toggle-section">
+                    <label class="ai-toggle-label">
+                        <input type="checkbox" id="ai-toggle" class="ai-toggle-checkbox">
+                        <span class="ai-toggle-slider"></span>
+                        <span class="ai-toggle-text">
+                            <i class="fas fa-robot"></i>
+                            Use AI Enhancement <span id="ai-status">(Checking...)</span>
+                        </span>
+                    </label>
+                    <p class="ai-description">Combines rule-based generation with AI for more creative results</p>
+                </div>
+
+                <button id="generate-btn" class="generate-btn">
+                    <i class="fas fa-magic"></i>
+                    Generate Names
+                </button>
+            </section>
+
+            <!-- Loading Animation -->
+            <div id="loading" class="loading hidden">
+                <div class="loading-spinner"></div>
+                <p>Generating creative business names...</p>
+            </div>
+
+            <!-- Error Message -->
+            <div id="error-message" class="error-message hidden">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span id="error-text"></span>
+            </div>
+
+            <!-- Results Section -->
+            <section id="results-section" class="results-section hidden">
+                <!-- Insights Panel -->
+                <div class="insights-panel">
+                    <h3><i class="fas fa-chart-line"></i> Generation Insights</h3>
+                    <div class="insights-grid">
+                        <div class="insight-item">
+                            <span class="insight-label">Keywords Extracted:</span>
+                            <span id="keywords-extracted" class="insight-value"></span>
+                        </div>
+                        <div class="insight-item">
+                            <span class="insight-label">Industry Detected:</span>
+                            <span id="industry-detected" class="insight-value"></span>
+                        </div>
+                        <div class="insight-item">
+                            <span class="insight-label">Names Generated:</span>
+                            <span id="total-generated" class="insight-value"></span>
+                        </div>
+                        <div class="insight-item">
+                            <span class="insight-label">Generation Method:</span>
+                            <span id="generation-method" class="insight-value"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="filter-section">
+                    <h3><i class="fas fa-filter"></i> Filter by Category</h3>
+                    <div id="category-filters" class="category-filters">
+                        <button class="filter-btn active" data-category="all">All Names</button>
+                    </div>
+                </div>
+
+                <!-- Names Grid -->
+                <div class="names-grid" id="names-grid">
+                    <!-- Names will be populated here -->
+                </div>
+
+                <!-- Favorites Section -->
+                <div id="favorites-section" class="favorites-section">
+                    <h3><i class="fas fa-heart"></i> Your Favorites</h3>
+                    <div id="favorites-grid" class="favorites-grid">
+                        <p class="no-favorites">No favorites yet. Click the heart icon to save names you like!</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 BizNameGen. Powered by AI and creativity.</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
